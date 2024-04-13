@@ -16,7 +16,7 @@ async function getlpPrice() {
             const tokenContract = new ethers.Contract(pair_address, erc20Abi, provider);
             const total = await tokenContract.totalSupply();
             const balance = ethers.utils.formatUnits(total)
-            const price = tvl/balance;
+            const price = tvl/balance || 0;
             poolData[pair_address] = price
         }
         fs.writeFileSync('./pools.json', JSON.stringify(poolData), 'utf-8')
