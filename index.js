@@ -1,16 +1,16 @@
 const axios = require('axios')
 const { ethers } = require("ethers");
 const fs = require('fs');
-const INFO_URL = 'https://test-info.macaron.xyz/pair/200810/pools'
-const rpcUrl = 'https://testnet-rpc.bitlayer.org'
+const TEST_INFO_URL = 'https://test-info.macaron.xyz/pair/200810/pools'
+const TEST_RPC = 'https://testnet-rpc.bitlayer.org'
 const erc20Abi = require('./erc20.json')
 
 async function getlpPrice() {
-    const res = await axios.get(INFO_URL)
+    const res = await axios.get(TEST_INFO_URL)
     if(res.data.statusCode == 200) {
         const startTime = new Date();
         const pools = res.data.data;
-        const provider = new ethers.providers.JsonRpcProvider(rpcUrl); 
+        const provider = new ethers.providers.JsonRpcProvider(TEST_RPC); 
         const poolData = {}
         for(const pool of pools) {
             const {pair_address, tvl} = pool
