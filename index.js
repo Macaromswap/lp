@@ -8,6 +8,7 @@ const erc20Abi = require('./erc20.json')
 async function getlpPrice() {
     const res = await axios.get(INFO_URL)
     if(res.data.statusCode == 200) {
+        const startTime = new Date();
         const pools = res.data.data;
         const provider = new ethers.providers.JsonRpcProvider(rpcUrl); 
         const poolData = {}
@@ -20,6 +21,8 @@ async function getlpPrice() {
             poolData[pair_address] = price
         }
         fs.writeFileSync('./pools.json', JSON.stringify(poolData), 'utf-8')
+        const endTime = new Date();
+        console.log(`getlpPrice take：${(endTime - startTime)/1000} second`);
     }
 }
 getlpPrice()
