@@ -8,7 +8,7 @@ const RPC = 'https://rpc.bitlayer.org'
 const erc20Abi = require('./erc20.json')
 
 async function getlpPrice() {
-    const startTime = new Date();
+    console.time("getlpPrice take")
     const testres = await axios.get(TEST_INFO_URL)
     const poolData = {}
     if(testres.data.statusCode == 200) {
@@ -52,7 +52,6 @@ async function getlpPrice() {
         }
     }
     fs.writeFileSync('./pools.json', JSON.stringify(poolData), 'utf-8')
-    const endTime = new Date();
-    console.log(`getlpPrice take：${(endTime - startTime)/1000} second`);
+    console.timeEnd("getlpPrice take");
 }
 getlpPrice()
