@@ -18,11 +18,11 @@ async function getlpPrice() {
             try {
                 const {pair_address, tvl} = pool
                 let lp_address = pair_address
-                if(pair_address == '0x13c6108d73dea14741cbf3bc6617c6738df4f7ae') {
-                    lp_address = '0x0017e3bbc621078916e3db5a26069e456d1f9872'
+                if(pair_address == '0xbf7b5573043e0a803f436241fffe3048a5efd203') {
+                    lp_address = '0xeb454a50cdd6273740e538a49f12d64c5ed1246e'
                 }
-                if(pair_address == '0x035cca67b0671d8e15e881ed0ca72f97dc93c17d') {
-                    lp_address = '0x443ef7a9d505380619d6a367d6808a5f6474e27d'
+                if(pair_address == '0xc16fe42451aefebaf3b45b308cd148a2c0e619e1') {
+                    lp_address = '0x5A3289ceCe2fFd2be1D4806e9ab3ddbaD0b05148'
                 }
                 const tokenContract = new ethers.Contract(lp_address, erc20Abi, provider);
                 const total = await tokenContract.totalSupply();
