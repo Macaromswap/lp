@@ -41,11 +41,15 @@ async function getlpPrice() {
         for(const pool of pools) {
             try {
                 const {pair_address, tvl} = pool
-                const tokenContract = new ethers.Contract(pair_address, erc20Abi, provider);
+                let lp_address = pair_address
+                if(pair_address == '0x108f9e0f5ba91d860307c4093ccb42876d36906f') {
+                    lp_address = '0x5ae96d29afe968be019e4fdc6cd5fc7f825ae083'
+                }
+                const tokenContract = new ethers.Contract(lp_address, erc20Abi, provider);
                 const total = await tokenContract.totalSupply();
                 const balance = ethers.utils.formatUnits(total)
                 const price = tvl/balance || 0;
-                poolData[pair_address] = price
+                poolData[lp_address] = price
             } catch (error) {
                 console.error(error)
             }
