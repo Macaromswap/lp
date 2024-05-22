@@ -43,7 +43,7 @@ async function getlpPrice() {
         const provider = new ethers.providers.JsonRpcProvider(RPC); 
         for(const pool of pools) {
             try {
-                const {pair_address, tvl} = pool
+                const {pair_address, tvl, charge_pecent} = pool
                 let lp_address = pair_address
                 if(pair_address == '0x108f9e0f5ba91d860307c4093ccb42876d36906f') {
                     lp_address = '0x5ae96d29afe968be019e4fdc6cd5fc7f825ae083'
