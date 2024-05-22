@@ -16,7 +16,7 @@ async function getlpPrice() {
         const provider = new ethers.providers.JsonRpcProvider(TEST_RPC); 
         for(const pool of pools) {
             try {
-                const {pair_address, tvl} = pool
+                const {pair_address, tvl, charge_pecent} = pool
                 let lp_address = pair_address
                 if(pair_address == '0xbf7b5573043e0a803f436241fffe3048a5efd203') {
                     lp_address = '0xeb454a50cdd6273740e538a49f12d64c5ed1246e'
@@ -28,7 +28,10 @@ async function getlpPrice() {
                 const total = await tokenContract.totalSupply();
                 const balance = ethers.utils.formatUnits(total)
                 const price = tvl/balance || 0;
-                poolData[lp_address] = price
+                poolData[lp_address] = {
+                    price,
+                    fee: charge_pecent
+                }
             } catch (error) {
                 console.error(error)
             }
@@ -49,7 +52,10 @@ async function getlpPrice() {
                 const total = await tokenContract.totalSupply();
                 const balance = ethers.utils.formatUnits(total)
                 const price = tvl/balance || 0;
-                poolData[lp_address] = price
+                poolData[lp_address] = {
+                    price,
+                    fee: charge_pecent
+                }
             } catch (error) {
                 console.error(error)
             }
