@@ -45,7 +45,7 @@ async function getlpPrice() {
             try {
                 const {pair_address, tvl, charge_pecent} = pool
                 let lp_address = pair_address
-                if(pair_address == '0x108f9e0f5ba91d860307c4093ccb42876d36906f') {
+                if(pair_address == '0x6bd6abbb15d4a066d98486f74afa491016657201') {
                     lp_address = '0x5ae96d29afe968be019e4fdc6cd5fc7f825ae083'
                 }
                 const tokenContract = new ethers.Contract(lp_address, erc20Abi, provider);
