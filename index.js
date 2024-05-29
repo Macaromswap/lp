@@ -16,7 +16,7 @@ async function getlpPrice() {
         const provider = new ethers.providers.JsonRpcProvider(TEST_RPC); 
         for(const pool of pools) {
             try {
-                const {pair_address, tvl, charge_pecent} = pool
+                const {pair_address, tvl, charge_pecent, is_stable, token0_symbol, token1_symbol} = pool
                 let lp_address = pair_address
                 if(pair_address == '0xbf7b5573043e0a803f436241fffe3048a5efd203') {
                     lp_address = '0xeb454a50cdd6273740e538a49f12d64c5ed1246e'
@@ -28,9 +28,17 @@ async function getlpPrice() {
                 const total = await tokenContract.totalSupply();
                 const balance = ethers.utils.formatUnits(total)
                 const price = tvl/balance || 0;
+                let symbol = ''
+                if(is_stable) {
+                    symbol = `${token0_symbol}/${token1_symbol} stable LP`
+                } else {
+                    symbol = `${token0_symbol}/${token1_symbol} LP`
+                }
                 poolData[lp_address] = {
                     price,
-                    fee: charge_pecent
+                    fee: charge_pecent,
+                    symbol,
+                    network: 'TEST'
                 }
             } catch (error) {
                 console.error(error)
@@ -43,18 +51,26 @@ async function getlpPrice() {
         const provider = new ethers.providers.JsonRpcProvider(RPC); 
         for(const pool of pools) {
             try {
-                const {pair_address, tvl, charge_pecent} = pool
+                const {pair_address, tvl, charge_pecent, is_stable, token0_symbol, token1_symbol} = pool
                 let lp_address = pair_address
-                if(pair_address == '0x6bd6abbb15d4a066d98486f74afa491016657201') {
+                if(pair_address == '0x108f9e0f5ba91d860307c4093ccb42876d36906f') {
                     lp_address = '0x5ae96d29afe968be019e4fdc6cd5fc7f825ae083'
                 }
                 const tokenContract = new ethers.Contract(lp_address, erc20Abi, provider);
                 const total = await tokenContract.totalSupply();
                 const balance = ethers.utils.formatUnits(total)
                 const price = tvl/balance || 0;
+                let symbol = ''
+                if(is_stable) {
+                    symbol = `${token0_symbol}/${token1_symbol} stable LP`
+                } else {
+                    symbol = `${token0_symbol}/${token1_symbol} LP`
+                }
                 poolData[lp_address] = {
                     price,
-                    fee: charge_pecent
+                    fee: charge_pecent,
+                    symbol,
+                    network: 'MAIN'
                 }
             } catch (error) {
                 console.error(error)
