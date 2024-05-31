@@ -82,6 +82,22 @@
       "day_volume": 43752.44331691681,
       "week_volume": 420381.7255435035,
       "month_volume": 420381.7255435035
+    },
+    {
+      "pair_address": "0x5AE96d29afe968bE019e4fdC6cD5fC7f825AE083",
+      "base_token": "0xfe9f969faf8Ad72a83b761138bF25dE87eFF9DD2",
+      "symbol": "MacaronLP",
+      "token0_address": "0xfe9f969faf8Ad72a83b761138bF25dE87eFF9DD2",
+      "token1_address": "0x9827431e8b77E87C9894BD50B055D6BE56bE0030",
+      "token0_symbol": "USDC",
+      "token1_symbol": "USDT",
+      "tvl": 1,
+      "charge_pecent": 0.003,
+      "type": 1,
+      "is_stable": 1,
+      "day_volume": 1,
+      "week_volume": 1,
+      "month_volume": 1
     }
   ]
 }
